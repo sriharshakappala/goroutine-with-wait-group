@@ -34,13 +34,13 @@ func isSafe(board [n][n]int, row int, col int) bool {
 	return true
 }
 
-func solveNQueen(board [n][n]int, col int) bool {
+func solveNQueen(board *[n][n]int, col int) bool {
 	if col >= 8 {
-		printBoard(board)
+		printBoard(*board)
 		return true
 	}
 	for i := 0; i < n; i++ {
-		if isSafe(board, i, col) {
+		if isSafe(*board, i, col) {
 			board[i][col] = 1
 			if solveNQueen(board, col+1) {
 				return true
@@ -52,7 +52,7 @@ func solveNQueen(board [n][n]int, col int) bool {
 }
 
 func main() {
-	if solveNQueen(board, 0) == false {
+	if solveNQueen(&board, 0) == false {
 		fmt.Println(false)
 	}
 	fmt.Println(true)
